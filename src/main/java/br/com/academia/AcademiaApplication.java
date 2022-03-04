@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AcademiaApplication {
 
 	public static void main(String[] args) {
+		System.err.println("Teste");
 		SpringApplication.run(AcademiaApplication.class, args);
 	}
 
