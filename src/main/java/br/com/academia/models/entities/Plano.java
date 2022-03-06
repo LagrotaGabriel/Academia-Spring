@@ -1,6 +1,8 @@
 package br.com.academia.models.entities;
 
 import br.com.academia.models.enums.TipoPlano;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class Plano {
     @Column(name = "data_assinatura", unique = false, nullable = false, updatable = false)
     private String dataAssinatura;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "plano")
     private Cliente cliente;
 

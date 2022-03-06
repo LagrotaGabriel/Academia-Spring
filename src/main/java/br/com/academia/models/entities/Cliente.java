@@ -18,25 +18,26 @@ public class Cliente {
     @Column(name = "id_cliente", updatable = false, unique = true)
     private Long id;
 
-    @Column(name = "nm_cliente", nullable = false, unique = false, length = 30, updatable = false)
+    @Column(name = "nm_cliente", nullable = false, unique = false, length = 30, updatable = true)
     private String nome;
 
     @Column(name = "sbnm_cliente", nullable = false, unique = false, length = 30, updatable = true)
     private String sobrenome;
 
-    @Column(name = "rg_cliente", nullable = false, unique = true, length = 12, updatable = false)
+    @Column(name = "rg_cliente", nullable = false, unique = true, length = 12, updatable = true)
     private String rg;
 
-    @Column(name = "cpf_cliente", nullable = false, unique = true, length = 14, updatable = false)
+    @Column(name = "cpf_cliente", nullable = false, unique = true, length = 14, updatable = true)
     private String cpf;
 
-    @Column(name = "dt_nascimento_cliente", nullable = false, unique = false, length = 10, updatable = false)
+    @Column(name = "dt_nascimento_cliente", nullable = false, unique = false, length = 10, updatable = true)
     private String dataNascimento;
 
-    @Column(name = "dt_cadastro_cliente", nullable = false, unique = false, length = 10, updatable = false)
+    @Column(name = "dt_cadastro_cliente", nullable = false, unique = false, length = 10, updatable = true)
     private String dataCadastro;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_plano")
     private Plano plano;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

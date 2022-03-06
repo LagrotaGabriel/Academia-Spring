@@ -1,12 +1,12 @@
-package br.com.academia.configs;
-import org.springframework.context.annotation.Configuration;
+package br.com.academia.config;
+/*import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 //@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /* @Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/index").hasAnyRole("PG_PROJETOS")
@@ -17,4 +17,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll();
     } */
+public class WebSecurityConfig{
 }
