@@ -28,6 +28,9 @@ public class Plano {
     @Column(name = "data_assinatura", unique = false, nullable = false, updatable = false)
     private String dataAssinatura;
 
+    @Column(name = "idCliente", unique = false, nullable = true, updatable = true)
+    private Integer idCliente;
+
     @JsonIgnore
     @OneToOne(mappedBy = "plano")
     private Cliente cliente;
@@ -41,10 +44,11 @@ public class Plano {
      * @param tipoPlano TipoPlano - Recebe o tipo do plano
      * @param dataAssinatura String - Recebe a data de assinatura do plano
      * @param cliente Cliente - Recebe o cliente contratante do plano */
-    public Plano(TipoPlano tipoPlano, String dataAssinatura, Cliente cliente) {
+    public Plano(TipoPlano tipoPlano, String dataAssinatura, Integer idCliente,Cliente cliente) {
         this.tipoPlano = tipoPlano;
         this.dataAssinatura = dataAssinatura;
         this.cliente = cliente;
+        this.idCliente = idCliente;
     }
 
     /** Método que retorna o id do Plano
@@ -81,6 +85,18 @@ public class Plano {
      * @param dataAssinatura String - Data que o plano foi assinado */
     public void setDataAssinatura(String dataAssinatura) {
         this.dataAssinatura = dataAssinatura;
+    }
+
+    /** Método que retorna o id do cliente que contém o plano
+     * @return Integer - Id do cliente que contém o plano */
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    /** Método usado para setar o id do cliente que contém o plano
+     * @param idCliente Integer - ID Do cliente que contém o plano */
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
     /** Método que retorna o cliente que possui o plano

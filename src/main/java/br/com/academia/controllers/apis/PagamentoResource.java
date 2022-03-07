@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/pagamento")
-@Api(value = "Acamidemia API - Pagamento Resource")
+@Api(value = "Academia API - Pagamento Resource")
 public class PagamentoResource {
 
     @Autowired
