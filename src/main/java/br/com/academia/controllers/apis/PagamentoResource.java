@@ -30,19 +30,22 @@ public class PagamentoResource {
     @Produces({MediaType.APPLICATION_JSON, "application/json"})
     @ApiOperation(value = "Cria um novo pagamento no banco de dados")
     public ResponseEntity<Pagamento> criaPagamento(@RequestBody Pagamento pagamento){
-        try{
-            if(pagamentoService.create(pagamento) != null){
-                Cliente finded = clienteService.byId(pagamento.getCliente().getId());
-                finded.getPagamentos().add(pagamento);
-                clienteService.update(finded.getId(), finded);
-                System.err.println(finded.getPagamentos());
-                return ResponseEntity.ok().body(pagamentoService.create(pagamento));
-            }
-            else {
+        if(pagamento.getCliente() != null) {
+            try {
+                if (pagamentoService.create(pagamento) != null) {
+                    Cliente finded = clienteService.byId(pagamento.getCliente().getId());
+                    finded.getPagamentos().add(pagamento);
+                    clienteService.update(finded.getId(), finded);
+                    System.err.println(finded.getPagamentos());
+                    return ResponseEntity.ok().body(pagamentoService.create(pagamento));
+                } else {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                }
+            } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
         }
-        catch(Exception e){
+        else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -72,30 +75,31 @@ public class PagamentoResource {
     @ApiOperation(value = "Atualiza pagamento pelo id")
     public ResponseEntity<Pagamento> atualiza(@PathVariable("id") Long id, @RequestBody Pagamento pagamento){
 
-        if(pagamentoService.update(id, pagamento) != null) {
+        if(pagamento.getCliente() != null) {
+            if (pagamentoService.update(id, pagamento) != null) {
+                pagamento.setId(id);
+                Cliente finded = clienteService.byId(pagamento.getCliente().getId());
 
-            pagamento.setId(id);
-            Cliente finded = clienteService.byId(pagamento.getCliente().getId());
-            int indexPagamento = -1;
+                int indexPagamento = -1;
 
-            for(int i = 0; i < finded.getPagamentos().size(); i++){
-
-                if(finded.getPagamentos().get(i).getId() == id){
-                    indexPagamento = i;
+                for (int i = 0; i < finded.getPagamentos().size(); i++) {
+                    if (finded.getPagamentos().get(i).getId() == id) {
+                        indexPagamento = i;
+                    }
                 }
 
-            }
+                if (indexPagamento != -1) {
+                    finded.getPagamentos().set(indexPagamento, pagamento);
+                    clienteService.update(finded.getId(), finded);
+                }
 
-            if(indexPagamento != -1){
-                finded.getPagamentos().set(indexPagamento, pagamento);
-                clienteService.update(finded.getId(), finded);
+                System.err.println(finded.getPagamentos());
+                return ResponseEntity.ok().body(pagamento);
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
-
-            System.err.println(finded.getPagamentos());
-            return ResponseEntity.ok().body(pagamento);
         }
-
-        else {
+        else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -104,7 +108,7 @@ public class PagamentoResource {
     @Produces({MediaType.APPLICATION_JSON, "application/json"})
     @ApiOperation(value = "Deleta um pagamento pelo id")
     public ResponseEntity<Pagamento> deleta(@PathVariable("id") Long id){
-        if(pagamentoService.delete(id) != null) return ResponseEntity.ok().build();
+        if(pagamentoService.delete(id)) return ResponseEntity.ok().build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 

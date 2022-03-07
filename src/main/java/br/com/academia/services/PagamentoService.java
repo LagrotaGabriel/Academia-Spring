@@ -33,6 +33,7 @@ public class PagamentoService {
     public Pagamento update(Long id, Pagamento pagamento){
 
         try{
+
             if(pagamentoValidation.validaValor(pagamento.getValor())) {
                 Pagamento finded = byId(id);
                 finded.setValor(pagamento.getValor());
@@ -40,24 +41,13 @@ public class PagamentoService {
                 finded.setDesconto(pagamento.getDesconto());
                 finded.setModalidade(pagamento.getModalidade());
                 finded.setVencimento(pagamento.getVencimento());
-                if (pagamento.getCliente() != null) {
-                    if (finded.getCliente() != null) {
-                        finded.getCliente().setNome(pagamento.getCliente().getNome());
-                        finded.getCliente().setSobrenome(pagamento.getCliente().getSobrenome());
-                        finded.getCliente().setRg(pagamento.getCliente().getRg());
-                        finded.getCliente().setCpf(pagamento.getCliente().getCpf());
-                        finded.getCliente().setDataNascimento(pagamento.getCliente().getDataNascimento());
-                        finded.getCliente().setDataCadastro(pagamento.getCliente().getDataCadastro());
-                    }
-                    else {
-                        finded.setCliente(pagamento.getCliente());
-                    }
-                }
                 return create(finded);
             }
+
             else{
                 return null;
             }
+
         }
         catch(Exception e){
             return null;
@@ -68,7 +58,7 @@ public class PagamentoService {
 
         try {
             if (byId(id) != null) {
-                pagamentoRepository.deleteById(id);
+                pagamentoRepository.delete(byId(id));
                 return true;
             } else {
                 return false;
