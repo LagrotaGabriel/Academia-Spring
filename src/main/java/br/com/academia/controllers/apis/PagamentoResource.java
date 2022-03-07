@@ -1,6 +1,8 @@
 package br.com.academia.controllers.apis;
 
+import br.com.academia.models.entities.Cliente;
 import br.com.academia.models.entities.Pagamento;
+import br.com.academia.services.ClienteService;
 import br.com.academia.services.PagamentoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,13 +23,24 @@ public class PagamentoResource {
     @Autowired
     PagamentoService pagamentoService;
 
+    @Autowired
+    ClienteService clienteService;
+
     @RequestMapping(method = RequestMethod.POST, path = "/new")
     @Produces({MediaType.APPLICATION_JSON, "application/json"})
     @ApiOperation(value = "Cria um novo pagamento no banco de dados")
     public ResponseEntity<Pagamento> criaPagamento(@RequestBody Pagamento pagamento){
         try{
-            if(pagamentoService.create(pagamento) != null) return ResponseEntity.ok().body(pagamentoService.create(pagamento));
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            if(pagamentoService.create(pagamento) != null){
+                Cliente finded = clienteService.byId(pagamento.getCliente().getId());
+                finded.getPagamentos().add(pagamento);
+                clienteService.update(finded.getId(), finded);
+                System.err.println(finded.getPagamentos());
+                return ResponseEntity.ok().body(pagamentoService.create(pagamento));
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -58,8 +71,33 @@ public class PagamentoResource {
     @Produces({MediaType.APPLICATION_JSON, "application/json"})
     @ApiOperation(value = "Atualiza pagamento pelo id")
     public ResponseEntity<Pagamento> atualiza(@PathVariable("id") Long id, @RequestBody Pagamento pagamento){
-        if(pagamentoService.update(id, pagamento) != null) return ResponseEntity.ok().body(pagamento);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        if(pagamentoService.update(id, pagamento) != null) {
+
+            pagamento.setId(id);
+            Cliente finded = clienteService.byId(pagamento.getCliente().getId());
+            int indexPagamento = -1;
+
+            for(int i = 0; i < finded.getPagamentos().size(); i++){
+
+                if(finded.getPagamentos().get(i).getId() == id){
+                    indexPagamento = i;
+                }
+
+            }
+
+            if(indexPagamento != -1){
+                finded.getPagamentos().set(indexPagamento, pagamento);
+                clienteService.update(finded.getId(), finded);
+            }
+
+            System.err.println(finded.getPagamentos());
+            return ResponseEntity.ok().body(pagamento);
+        }
+
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/delete={id}")

@@ -1,5 +1,7 @@
 package br.com.academia.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class Cliente {
     @JoinColumn(name = "id_plano")
     private Plano plano;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pagamento> pagamentos;
 

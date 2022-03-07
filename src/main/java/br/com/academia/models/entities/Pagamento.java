@@ -3,6 +3,8 @@ package br.com.academia.models.entities;
 import br.com.academia.models.enums.FormaPagamento;
 import br.com.academia.models.enums.Modalidade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import javax.persistence.*;
 
@@ -38,9 +40,8 @@ public class Pagamento {
     @Column(name = "forma_pagamento", updatable = true, nullable = false, unique = false)
     private FormaPagamento formaPagamento;
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_cliente", unique = false, nullable = false, updatable = true)
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     /** Método construtor sem parâmetros da classe Pagamento */
@@ -61,6 +62,19 @@ public class Pagamento {
         this.modalidade = modalidade;
         this.formaPagamento = formaPagamento;
         this.cliente = cliente;
+    }
+
+    /** Método que retorna o id do pagamento
+     * @return Integer - Retorna id do pagamento */
+    public Long getId() {
+        return id;
+    }
+
+    /** Método que seta o id do pagamento
+     * @param id Integer - Id do pagamento
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /** Método que retorna o valor do pagamento
