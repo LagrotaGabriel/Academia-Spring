@@ -2,6 +2,7 @@ package br.com.academia.models.entities;
 
 import br.com.academia.models.enums.FormaPagamento;
 import br.com.academia.models.enums.Modalidade;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -37,6 +38,7 @@ public class Pagamento {
     @Column(name = "forma_pagamento", updatable = true, nullable = false, unique = false)
     private FormaPagamento formaPagamento;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_cliente", unique = false, nullable = false, updatable = true)
     private Cliente cliente;

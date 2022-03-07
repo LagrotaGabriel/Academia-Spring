@@ -38,19 +38,15 @@ public class ClienteService {
     public Cliente update(Long id, Cliente cliente){
 
         try{
-
             if(clienteValidation.validaCliente(cliente)) {
                 Cliente finded = byId(id);
-
                 finded.setNome(cliente.getNome());
                 finded.setSobrenome(cliente.getSobrenome());
                 finded.setRg(cliente.getRg());
                 finded.setCpf(cliente.getCpf());
                 finded.setDataNascimento(cliente.getDataNascimento());
                 finded.setDataCadastro(cliente.getDataCadastro());
-
                 if (cliente.getPlano() != null) {
-
                     if (finded.getPlano() != null) {
                         finded.getPlano().setCliente(cliente.getPlano().getCliente());
                         finded.getPlano().setTipoPlano(cliente.getPlano().getTipoPlano());
@@ -58,25 +54,17 @@ public class ClienteService {
                     } else {
                         finded.setPlano(cliente.getPlano());
                     }
-
                 }
-
                 if (cliente.getPagamentos() != null) finded.setPagamentos(cliente.getPagamentos());
-
-
                 return create(finded);
             }
-
             else{
                 return null;
             }
-
         }
-
         catch(Exception e){
             return null;
         }
-
     }
 
     public Boolean delete(Long id){
