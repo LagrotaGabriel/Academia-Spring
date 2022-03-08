@@ -8,12 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
-public class IndexController {
+public class ClienteController {
 
-    @GetMapping("home")
-    public ModelAndView index(){
+    @GetMapping("cliente")
+    public ModelAndView cliente(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("cliente");
         return modelAndView;
     }
 
