@@ -63,7 +63,7 @@ body{
     justify-content: center;
     text-align:  center;
     display: block; 
-    height: 760px;
+    height: 780px;
     background-color: #4a5463;
     background-image: linear-gradient(to right, #303845,#4a5463);
     border-radius: 25px;
@@ -73,7 +73,7 @@ body{
 .background{
     position: absolute;
     width: 980px;
-    height: 760px;
+    height: 780px;
     background-image: url('../images/gym1.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;

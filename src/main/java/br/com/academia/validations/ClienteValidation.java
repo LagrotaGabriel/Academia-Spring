@@ -97,6 +97,22 @@ public class ClienteValidation {
         }
     }
 
+    // Valida data de nascimento
+    public Boolean validaDataNascimento(String dataNascimento){
+
+        if(dataNascimento.equals("") || dataNascimento == null){
+            return false;
+        }
+        else{
+            if(dataNascimento.length() != 10){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    }
+
     // Valida tudo
     public Boolean validaCliente(Cliente cliente){
         return
