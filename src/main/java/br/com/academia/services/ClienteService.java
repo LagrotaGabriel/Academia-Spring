@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -33,6 +34,14 @@ public class ClienteService {
 
     public Cliente byId(Long id){
         return clienteRepository.findById(id).orElseThrow(() -> new NaoEncontrado("Cliente não encontrado"));
+    }
+
+    public Optional<Cliente> byRg(String rg){
+        return clienteRepository.findByRg(rg);
+    }
+
+    public Optional<Cliente> byCpf(String cpf){
+        return clienteRepository.findByCpf(cpf);
     }
 
     public Cliente update(Long id, Cliente cliente){

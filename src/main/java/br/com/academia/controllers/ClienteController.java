@@ -12,6 +12,7 @@ public class ClienteController {
 
     @GetMapping("cliente")
     public ModelAndView cliente(){
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cliente");
         return modelAndView;

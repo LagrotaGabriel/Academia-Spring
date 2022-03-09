@@ -40,35 +40,46 @@ public class CadClienteController {
         cliente.setRg(cliente.getRg().replaceAll("\\.", "").replaceAll("-", ""));
         cliente.setCpf(cliente.getCpf().replaceAll("\\.", "").replaceAll("-", ""));
 
-        if(clienteValidation.validaCliente(cliente)){
-            System.err.println("OK");
-            if(clienteValidation.validaDataNascimento(cliente.getDataNascimento())){
+        if(!clienteService.byRg(cliente.getRg()).isPresent() && !clienteService.byCpf(cliente.getCpf()).isPresent()) {
+            if (clienteValidation.validaCliente(cliente)) {
+                if (clienteValidation.validaDataNascimento(cliente.getDataNascimento())) {
 
-                cliente.setDataCadastro(calendar.get(Calendar.DAY_OF_MONTH) + "/"
-                        + (calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR));
+                    cliente.setDataCadastro(calendar.get(Calendar.DAY_OF_MONTH) + "/"
+                            + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR));
 
-                cliente.getPlano().setDataAssinatura(calendar.get(Calendar.DAY_OF_MONTH) + "/"
-                        + (calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR));
+                    cliente.getPlano().setDataAssinatura(calendar.get(Calendar.DAY_OF_MONTH) + "/"
+                            + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR));
 
-                clienteService.create(cliente);
+                    clienteService.create(cliente);
 
-                redirAttrs.addFlashAttribute
-                        ("UsuarioCadastrado",
-                        "Cliente "+ cliente.getNome() + " "
-                                + cliente.getSobrenome() + " cadastrado com sucesso!");
+                    redirAttrs.addFlashAttribute
+                            ("UsuarioCadastrado",
+                                    "Cliente " + cliente.getNome() + " "
+                                            + cliente.getSobrenome() + " cadastrado com sucesso!");
+                } else {
+                    redirAttrs.addFlashAttribute("UsuarioCadastrado",
+                            "Dados inseridos de forma incorreta");
+                }
             }
-            else{
+            else {
                 redirAttrs.addFlashAttribute("UsuarioCadastrado",
                         "Dados inseridos de forma incorreta");
             }
         }
         else{
-            redirAttrs.addFlashAttribute("UsuarioCadastrado",
-                    "Dados inseridos de forma incorreta");
+            if(clienteService.byCpf(cliente.getCpf()).isPresent()){
+                redirAttrs.addFlashAttribute("UsuarioCadastrado",
+                        "Erro: CPF informado já existe");
+            }
+            else if(clienteService.byRg(cliente.getRg()).isPresent()){
+                redirAttrs.addFlashAttribute("UsuarioCadastrado",
+                        "Erro: RG informado já existe");
+            }
+            else if(clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()){
+                redirAttrs.addFlashAttribute("UsuarioCadastrado",
+                        "Erro: CPF e RG informados já existem");
+            }
         }
-
-
-
 
         modelAndView.setViewName("redirect:/novo");
         return modelAndView;
