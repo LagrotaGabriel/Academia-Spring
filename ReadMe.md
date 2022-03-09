@@ -16,4 +16,4 @@ Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plat
 ![](TelaPrincipal.png)
 
 # Tela cadastro cliente
-![](TelaCadastroCliente.png)
+![](CadastroCliente.png)
