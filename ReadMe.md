@@ -11,3 +11,9 @@ Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plat
 
 # UML INICIAL
 ![](UML-Academia.png)
+
+# Tela home page
+![](TelaPrincipal.png)
+
+# Tela cadastro cliente
+![](TelaCadastroCliente.png)
