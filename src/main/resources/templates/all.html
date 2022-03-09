@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+		<link rel="icon" th:href="@{images/muscle.png}" type="image/gif" sizes="32x32">
+		<link th:href="@{css/all.css}" rel="stylesheet" />
+		<script type="text/javascript" th:src="@{js/cad.js}"defer></script>
+
+		<title>Cartage | Clientes</title>
+
+	</head>
+	<body>
+
+		<div th:if="${UsuarioCadastrado}" id="warning" class="warning" onclick="disableWarning()">
+			<p class="warning_text" th:text="${UsuarioCadastrado}"></p>
+		</div>
+
+		<div class="center">
+
+				<div class="background">
+				</div>
+
+				<div class="title_div">
+					<h1 class="title_text">Clientes cadastrados</h1>
+				</div>
+
+				<div class="content">
+
+					<form class="searchBar" th:action="${todos}" th:object="${cliente}" method="POST">
+
+						<div class="pesquisa">
+
+							<input type="text" class="pesquisaInput" placeholder="Pesquisa por CPF..." name="cpf"/>
+							<input type="text" class="pesquisaInput" placeholder="Pesquisa por RG..." name="rg"/>
+
+						</div>	
+
+						<button type="submit" class="pesquisaBtn">
+							<img th:src="@{images/spelling.png}"class ="pesquisaImg"/>
+						</button>
+
+					</form>	
+
+					<table class="tabela">
+						<thead>
+							<tr class="linha">
+								<th class="coluna_head">Nome</th>
+								<th class="coluna_head">Sobrenome</th>
+								<th class="coluna_head">Rg</th>
+								<th class="coluna_head">Cpf</th>
+								<th class="coluna_head">Data nasc.</th>
+								<th class="coluna_head">Data cad.</th>
+								<th class="coluna_head">Plano</th>
+								<th class="coluna_head" id="coluna_head_btn">Pgtos.</th>
+								<th class="coluna_head" id="coluna_head_btn">Editar</th>
+								<th class="coluna_head" id="coluna_head_btn">Ver</th>
+								<th class="coluna_head" id="coluna_head_btn">Excluir</th>
+							</tr>	
+						</thead>	
+
+						<div th:unless="${teste}">
+
+							<tbody th:each="cliente : ${clientes}">
+
+								<tr class="linha">
+
+									<td th:text="${cliente.nome}" class="coluna_body">...</td>
+						         	<td th:text="${cliente.sobrenome}" class="coluna_body">...</td>
+									<td th:text="${cliente.rg}" class="coluna_body">...</td>
+						         	<td th:text="${cliente.cpf}" class="coluna_body">...</td>
+									<td th:text="${cliente.dataNascimento}" class="coluna_body">...</td>
+						         	<td th:text="${cliente.dataCadastro}" class="coluna_body">...</td>
+									<td th:text="${cliente.plano.tipoPlano.descricao}" class="coluna_body" >...</td>
+									
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/payment.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>
+
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/exchange.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>								
+
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/spelling.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>				
+
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/delete.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>												
+
+								</tr>
+							</tbody>
+						</div>
+
+						<div th:if="${teste}">
+
+							AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+							<tbody th:each="buscado : ${buscados}">
+
+								BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+								<tr class="linha">
+
+									CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+									<td th:text="${buscado.nome}" class="coluna_body">...</td>
+
+									DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+						         	<td th:text="${buscado.sobrenome}" class="coluna_body">...</td>
+									<td th:text="${buscado.rg}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.cpf}" class="coluna_body">...</td>
+									<td th:text="${buscado.dataNascimento}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.dataCadastro}" class="coluna_body">...</td>
+									<td th:text="${buscado.plano.tipoPlano.descricao}" class="coluna_body" >...</td>
+									
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/payment.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>
+
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/exchange.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>								
+
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/spelling.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>				
+
+									<td class="coluna_body" id="coluna_body_btn">
+										<a href="#" class="coluna_body_clicavel">
+											<image th:src="@{images/delete.png}" class="coluna_body_imagem"/>
+										</a>
+									</td>												
+
+								</tr>
+							</tbody>
+
+						</div>
+
+
+					</table>	
+				</div>	
+		</div>	
+
+	</body>
+</html>
