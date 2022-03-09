@@ -13,7 +13,18 @@ Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plat
 ![](UML-Academia.png)
 
 # Tela home page
+
+- Botões clicáveis e animados
+- Layout simples e direto
+- Oferece a estrutura inicial de navegação pelo sistema
+
 ![](TelaPrincipal.png)
 
 # Tela cadastro cliente
+
+- Possibilita o cadastro de um novo cliente
+- Layout intuitivo
+- Valida os campos de entrada para que não haja erros nas entradas do usuário ou inconsistências na persistência do JPA
+- Container de warning aparece para notificar se houve ou não sucesso com o cadastro do cliente
+
 ![](CadastroCliente.png)
