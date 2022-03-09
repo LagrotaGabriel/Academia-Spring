@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" th:href="@{images/shield.png}" type="image/gif" sizes="32x32">
+		<link th:href="@{css/cad.css}" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Righteous&display=swap" rel="stylesheet">
+		<script type="text/javascript" th:src="@{js/cad.js}"defer></script>
+		<title>Cartage | Novo cliente</title>
+	</head>
+	<body>
+
+		<div th:if="${UsuarioCadastrado}" id="warning" class="warning" onclick="disableWarning()">
+			<p class="warning_text" th:text="${UsuarioCadastrado}"></p>
+		</div>
+
+		<div class="center">
+
+				<div class="background">
+				</div>
+
+				<div class="title_div">
+					<h1 class="title_text">Cadastrar novo cliente</h1>
+				</div>
+
+				<div class="content">
+
+					<form th:action="${novo}" th:object="${cliente}" method="POST" class="formulario">
+
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Nome</label>
+								</div>
+
+								<div class="formulario_sub_input">
+									<input type="text" name="nome" placeholder="Ex: Gabriel" maxlength="30" />
+								</div>
+
+							</div>
+
+							<div class="formulario_sub">
+								<div class="formulario_sub_label">
+									<label>Sobrenome</label>
+								</div>
+								<div class="formulario_sub_input">
+									<input type="text" name="sobrenome" placeholder="Ex: Lagrota" maxlength="30" />
+								</div>
+							</div>
+
+						</div>-->
+
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>RG</label>
+								</div>
+
+								<div class="formulario_sub_input">
+									<input type="text" name="rg" placeholder="Ex: 11.111.111-1" maxlength="12" />
+								</div>
+
+							</div>
+
+							<div class="formulario_sub">
+								<div class="formulario_sub_label">
+									<label>CPF</label>
+								</div>
+								<div class="formulario_sub_input">
+									<input type="text" name="cpf" placeholder="Ex:111.111.111-11" maxlength="14" />
+								</div>
+							</div>
+
+						</div>
+
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+								<div class="formulario_sub_label">
+									<label>Data de Nascimento</label>
+								</div>
+								<div class="formulario_sub_input">
+									<input type="text" name="dataNascimento" placeholder="Ex:21/07/1998" maxlength="10" />
+								</div>
+							</div>
+
+							<div class="formulario_sub">
+								<div class="formulario_sub_label">
+									<label>Tipo de plano:</label>
+								</div>
+
+								<div class="formulario_sub_input">
+
+									<select name="plano.tipoPlano" class="planos">
+		  								<option value="BASICO">Básico (R$ 70,00)</option>
+		  								<option value="INTERMEDIARIO">Intermediário (R$ 100,00)</option>
+		  								<option value="AVANCADO">Avançado (R$ 140,00)</option>
+									</select>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="button_line">
+							<div class="buttons">
+								<button type="submit" class="btn" id="btn_cadastro">CADASTRAR</button>
+							</div>
+							<div class="buttons">
+								<a th:href="@{/cliente}"><button type="button" class="btn" id="btn_volta">VOLTAR</button></a>
+							</div>
+						</div>
+
+					</form>
+
+				</div>	
+		</div>	
+
+	</body>
+</html>

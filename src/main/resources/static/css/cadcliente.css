@@ -1,0 +1,235 @@
+/* RESET CSS */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+body{
+	background-repeat: no-repeat;
+	background-size:  cover;
+    background-color: #e1e3e6;
+    background-image: linear-gradient(to right, #4a5463, #9a9a9c);
+}
+
+/* FIM DO RESET CSS */
+
+.center{
+    width: 980px;
+    margin: 100px auto;
+    justify-content: center;
+    text-align:  center;
+    display: block; 
+    height: 760px;
+    background-color: #4a5463;
+    background-image: linear-gradient(to right, #303845,#4a5463);
+    border-radius: 25px;
+    box-shadow: 0 0 20px #121212;
+}
+
+.background{
+    position: absolute;
+    width: 980px;
+    height: 760px;
+    background-image: url('../images/gym1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    opacity: 0.3;
+    border-radius: 25px;
+    box-shadow: 0 0 20px #121212;
+
+}
+
+.title_div{
+    background-color: #dedede;
+    background-image: linear-gradient(to right, #4d081f, #3b0416);
+    padding-top: 25px;
+    padding-bottom: 25px;
+    letter-spacing: 5px;
+    border-radius: 25px 25px 0 0;
+    opacity: 1;
+}
+
+.title_text{
+    text-align: center;
+    font-family: 'Righteous', cursive;
+    color: #c9c9c9;
+    font-size:  48px;
+    text-shadow: 3px 3px #121212;
+}
+
+.content{
+    position: absolute;
+    margin: 0 auto;
+    height: 660px;
+    border-radius: 0 0 25px 25px;
+    width: 980px;
+}
+
+
+.formulario{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 100px;
+    display: inline-block;
+    float: left;
+}
+
+.formulario_line{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.formulario_sub{
+    width: 50%;
+    margin: 0 auto;
+    float: left;
+}
+
+.formulario_sub_label{
+    font-size: 32px;
+    font-family: 'Righteous', cursive;
+    width: 100%;
+    font-weight: 300;
+    color:  #dedede;
+    text-shadow: 2px 2px #121212;
+    margin-bottom: 10px;
+}
+
+input{
+    width: 85%;
+    border-radius: 15px;
+    font-size: 18px;
+    padding: 8px 15px;
+    border-width: 0px;
+    font-family: 'Righteous', cursive;
+    font-weight: 300;
+    box-shadow: 0 0 15px #121212;
+    background-image: linear-gradient(to right, #dedede, #a6a6a6);
+}
+
+.planos{
+    width: 91%;
+    border-radius: 15px;
+    font-size: 18px ;
+    padding: 8px 15px;
+    border-width: 0px;
+    font-family: 'Righteous', cursive;
+    font-weight: 300;
+    box-shadow: 0 0 15px #121212;
+    background-image: linear-gradient(to right, #dedede, #a6a6a6);
+}
+
+.button_line{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.buttons{
+    width: 50%;
+    margin: 0 auto;
+    float: left;
+}
+
+.btn{
+    animation: pulse 3s infinite;
+    margin: 0 auto;
+    margin-top: 25px;
+    font-family: 'Righteous', cursive;
+    font-size: 32px;
+    letter-spacing: 1px;
+    border-width: 0px;
+    box-shadow: 10px 10px 20px #121212;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-image: linear-gradient(to right, #82304b, #63152f);
+    text-shadow: 3px 3px #121212;
+    opacity: 0.98;
+    padding: 9px 10px;
+    width: 70%;
+    text-align: center;
+}
+
+#btn_cadastro{
+    float: right;
+    margin-right: 15px;
+}
+
+#btn_volta{
+    float: left;
+    margin-left: 15px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to right, #63152f, #82304b);
+    color: #c9c9c9;
+    text-shadow: 2px 2px #121212;
+}
+
+
+
+@keyframes pulse{
+
+    0%{
+        transform: scale(0.96);
+    }
+    70%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.96);
+    }
+
+
+}
