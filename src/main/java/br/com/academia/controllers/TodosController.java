@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/cliente")
 public class TodosController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class TodosController {
     @Autowired
     ClienteRepository clienteRepository;
 
-    @GetMapping("todos")
+    @GetMapping("/todos")
     public ModelAndView todos(Model model){
 
         ModelAndView modelAndView = new ModelAndView();
@@ -37,7 +37,7 @@ public class TodosController {
         return modelAndView;
     }
 
-    @PostMapping("todos")
+    @PostMapping("cliente/todos")
     public ModelAndView todosPost(Cliente cliente, Model model, RedirectAttributes redirAttrs){
 
         ModelAndView modelAndView = new ModelAndView();
@@ -49,18 +49,18 @@ public class TodosController {
         if (clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()
         && clienteService.byRg(cliente.getRg()).get() == clienteService.byCpf(cliente.getCpf()).get()){
             System.err.println("Acessei");
-            modelAndView.setViewName("redirect:/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
+            modelAndView.setViewName("redirect:cliente/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
         }
         else{
             redirAttrs.addFlashAttribute
                     ("StatusCadastro", "Usuário não encontrado");
-            modelAndView.setViewName("redirect:/todos");
+            modelAndView.setViewName("redirect:cliente/todos");
         }
         return modelAndView;
 
     }
 
-    @GetMapping("todos={id}")
+    @GetMapping("cliente/todos={id}")
     public ModelAndView search(@PathVariable("id") Long id, Model model, RedirectAttributes redirAttrs){
 
         if(clienteRepository.findById(id).isPresent()){
@@ -79,7 +79,7 @@ public class TodosController {
 
     }
 
-    @PostMapping("todos={id}")
+    @PostMapping("cliente/todos={id}")
     public ModelAndView searchPost(@PathVariable("id") Long id,Cliente cliente, Model model, RedirectAttributes redirAttrs){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -89,15 +89,26 @@ public class TodosController {
         // SE OS DOIS CAMPOS CONSTAM ALGO E O CLIENTE RETORNADO FOR IGUAL
         if (clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()
                 && clienteService.byRg(cliente.getRg()).get() == clienteService.byCpf(cliente.getCpf()).get()){
-            modelAndView.setViewName("redirect:/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
+            modelAndView.setViewName("redirect:cliente/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
         }
         else{
             redirAttrs.addFlashAttribute
                     ("StatusCadastro", "Usuário não encontrado");
-            modelAndView.setViewName("redirect:/todos");
+            modelAndView.setViewName("redirect:cliente/todos");
         }
         return modelAndView;
     }
 
+
+
+
+    @GetMapping("cliente/todos/view={id}")
+    public ModelAndView testando(@PathVariable("id") Long id ,ModelAndView modelAndView){
+
+        System.err.println("ID: " + id);
+        modelAndView.setViewName("all");
+        return modelAndView;
+
+    }
 
 }

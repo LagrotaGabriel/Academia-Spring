@@ -28,17 +28,17 @@
 				</div>
 
 				<div class="title_div">
-					<h1 class="title_text">Clientes cadastrados</h1>
+					<h1 class="title_text">Histórico de pagamentos</h1>
 				</div>
 
 				<div class="content">
 
-					<form class="searchBar" th:action="${todos}" th:object="${cliente}" method="POST">
+					<form class="searchBar" th:action="${pagamentos}" th:object="${pagamento}" method="POST">
 
 						<div class="pesquisa">
 
-							<input type="text" class="pesquisaInput" placeholder="Pesquisa por CPF..." name="cpf"  oninput="estadoBotao()" id="pesquisaInputCpf"/>
-							<input type="text" class="pesquisaInput" placeholder="Pesquisa por RG..." name="rg"  oninput="estadoBotao()" id="pesquisaInputRg"/>
+							<input type="text" class="pesquisaInput" placeholder="Pesquisa por CPF..." name="cliente.cpf"  oninput="estadoBotao()" id="pesquisaInputCpf"/>
+							<input type="text" class="pesquisaInput" placeholder="Pesquisa por RG..." name="cliente.rg"  oninput="estadoBotao()" id="pesquisaInputRg"/>
 
 						</div>	
 
@@ -48,7 +48,7 @@
 
 						</button>
 
-						<a th:href="@{/todos}">
+						<a th:href="@{/pagamentos}">
 							<button type="button" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
 								<img th:src="@{images/all.png}" class ="pesquisaImg" alt="Listar todos"/>
 							</button>
@@ -59,14 +59,12 @@
 					<table class="tabela">
 						<thead>
 							<tr class="linha">
-								<th class="coluna_head">Nome</th>
-								<th class="coluna_head">Sobrenome</th>
-								<th class="coluna_head">Rg</th>
-								<th class="coluna_head">Cpf</th>
-								<th class="coluna_head">Data nasc.</th>
-								<th class="coluna_head">Data cad.</th>
-								<th class="coluna_head">Plano</th>
-								<th class="coluna_head" id="coluna_head_btn">Pgtos.</th>
+								<th class="coluna_head">Valor</th>
+								<th class="coluna_head">Desconto</th>
+								<th class="coluna_head">Vencimento</th>
+								<th class="coluna_head">Modalidade</th>
+								<th class="coluna_head">Forma pgto.</th>
+								<th class="coluna_head">Id Cliente</th>
 								<th class="coluna_head" id="coluna_head_btn">Editar</th>
 								<th class="coluna_head" id="coluna_head_btn">Ver</th>
 								<th class="coluna_head" id="coluna_head_btn">Excluir</th>
@@ -75,23 +73,16 @@
 
 						<div th:unless="${teste}">
 
-							<tbody th:each="cliente : ${clientes}">
+							<tbody th:each="pagamento : ${pagamentos}">
 
 								<tr class="linha">
 
-									<td th:text="${cliente.nome}" class="coluna_body">...</td>
-						         	<td th:text="${cliente.sobrenome}" class="coluna_body">...</td>
-									<td th:text="${cliente.rg}" class="coluna_body">...</td>
-						         	<td th:text="${cliente.cpf}" class="coluna_body">...</td>
-									<td th:text="${cliente.dataNascimento}" class="coluna_body">...</td>
-						         	<td th:text="${cliente.dataCadastro}" class="coluna_body">...</td>
-									<td th:text="${cliente.plano.tipoPlano.descricao}" class="coluna_body" >...</td>
-									
-									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{images/payment.png}" class="coluna_body_imagem"/>
-										</a>
-									</td>
+									<td th:text="${pagamento.valor}" class="coluna_body">...</td>
+						         	<td th:text="${pagamento.desconto}" class="coluna_body">...</td>
+									<td th:text="${pagamento.vencimento}" class="coluna_body">...</td>
+						         	<td th:text="${pagamento.modalidade}" class="coluna_body">...</td>
+									<td th:text="${pagamento.formaPagamento}" class="coluna_body">...</td>
+						         	<td th:text="${pagamento.cliente.id}" class="coluna_body">...</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
 										<a href="#" class="coluna_body_clicavel">
@@ -117,23 +108,16 @@
 
 						<div th:if="${teste}">
 
-							<tbody th:each="cliente : ${clientes}">
+							<tbody th:each="pagamento : ${pagamentos}">
 
 								<tr class="linha">
 
-									<td th:text="${buscado.nome}" class="coluna_body">...</td>
-						         	<td th:text="${buscado.sobrenome}" class="coluna_body">...</td>
-									<td th:text="${buscado.rg}" class="coluna_body">...</td>
-						         	<td th:text="${buscado.cpf}" class="coluna_body">...</td>
-									<td th:text="${buscado.dataNascimento}" class="coluna_body">...</td>
-						         	<td th:text="${buscado.dataCadastro}" class="coluna_body">...</td>
-									<td th:text="${buscado.plano.tipoPlano.descricao}" class="coluna_body" >...</td>
-									
-									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{images/payment.png}" class="coluna_body_imagem"/>
-										</a>
-									</td>
+									<td th:text="${buscado.valor}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.desconto}" class="coluna_body">...</td>
+									<td th:text="${buscado.vencimento}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.modalidade}" class="coluna_body">...</td>
+									<td th:text="${buscado.formaPagamento}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.cliente.id}" class="coluna_body">...</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
 										<a href="#" class="coluna_body_clicavel">
@@ -163,7 +147,7 @@
 
 					<div class="button_line">
 						<div class="buttons">
-							<a th:href="@{/cliente}">
+							<a th:href="@{/home}">
 								<button type="button" class="btn" id="btn_volta">VOLTAR</button>
 							</a>
 						</div>

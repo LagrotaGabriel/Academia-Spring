@@ -15,20 +15,20 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 @Controller
-@RestController("/")
+@RestController("/cliente")
 public class CadClienteController {
 
     @Autowired
     ClienteService clienteService;
 
-    @GetMapping("novo")
+    @GetMapping("cliente/novo")
     public ModelAndView cadCliente(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cadcliente");
         return modelAndView;
     }
 
-    @PostMapping("novo")
+    @PostMapping("cliente/novo")
     public ModelAndView cadClientePost(Cliente cliente, Model model, RedirectAttributes redirAttrs){
 
         ModelAndView modelAndView = new ModelAndView();
@@ -81,7 +81,7 @@ public class CadClienteController {
             }
         }
 
-        modelAndView.setViewName("redirect:/novo");
+        modelAndView.setViewName("redirect:/cliente/novo");
         return modelAndView;
     }
 }
