@@ -42,61 +42,28 @@ public class TodosController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        // CPF VAZIO RG PREENCHIDO
-        if(cliente.getCpf().equals("") || cliente.getCpf() == null && !cliente.getRg().equals("")){
-            cliente.setRg(cliente.getRg().replaceAll("-","").replaceAll("\\.",""));
-            modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByRg(cliente.getRg()).get().getId());
+        cliente.setRg(cliente.getRg().replaceAll("\\.", "").replaceAll("-", ""));
+        cliente.setCpf(cliente.getCpf().replaceAll("\\.", "").replaceAll("-", ""));
+
+        // SE OS DOIS CAMPOS CONSTAM ALGO E O CLIENTE RETORNADO FOR IGUAL
+        if (clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()
+        && clienteService.byRg(cliente.getRg()).get() == clienteService.byCpf(cliente.getCpf()).get()){
+            System.err.println("Acessei");
+            modelAndView.setViewName("redirect:/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
         }
-        // RG VAZIO CPF PREENCHIDO
-        else if(cliente.getRg().equals("") || cliente.getRg() == null && !cliente.getCpf().equals("")){
-            cliente.setCpf(cliente.getCpf().replaceAll("-","").replaceAll("\\.",""));
-            modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByCpf(cliente.getCpf()).get().getId());
-        }
-        // AMBOS VAZIOS
-        else if(cliente.getCpf().equals("") || cliente.getCpf() == null && cliente.getRg().equals("") || cliente.getRg() == null) {
-            redirAttrs = null;
+        else{
+            redirAttrs.addFlashAttribute
+                    ("StatusCadastro", "Usuário não encontrado");
             modelAndView.setViewName("redirect:/todos");
         }
-        // AMBOS PREENCHIDOS
-        else if(!cliente.getRg().equals("") && !cliente.getCpf().equals("")){
-            cliente.setRg(cliente.getRg().replaceAll("-","").replaceAll("\\.",""));
-            cliente.setCpf(cliente.getCpf().replaceAll("-","").replaceAll("\\.",""));
-            System.err.println("1");
-            // SE O RG ESTIVER OK
-            if(clienteService.byRg(cliente.getRg()).isPresent()){
-                System.err.println("2");
-                cliente.setRg(cliente.getRg().replaceAll("-","").replaceAll("\\.",""));
-                modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByRg(cliente.getRg()).get().getId());
-            }
-
-            // SE O RG NÃO ESTIVER OK
-            else{
-
-                // SE O CPF ESTIVER OK
-                System.err.println("3");
-                if(clienteService.byCpf(cliente.getCpf()).isPresent()){
-                    cliente.setCpf(cliente.getCpf().replaceAll("-","").replaceAll("\\.",""));
-                    modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByCpf(cliente.getCpf()).get().getId());
-                }
-
-                // SE O CPF NÃO ESTIVER OK
-                else{
-                    System.err.println("4");
-                    redirAttrs = null;
-                    modelAndView.setViewName("redirect:/todos");
-                }
-            }
-        }
         return modelAndView;
+
     }
 
     @GetMapping("todos={id}")
     public ModelAndView search(@PathVariable("id") Long id, Model model, RedirectAttributes redirAttrs){
 
-        System.err.println("ACESSEI");
-        System.err.println(id);
         if(clienteRepository.findById(id).isPresent()){
-            System.err.println("PRESENTE");
             Cliente buscado = clienteRepository.findById(id).get();
             System.err.println(buscado);
             List<Cliente> clientes = new ArrayList<>();
@@ -109,53 +76,25 @@ public class TodosController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("all");
         return modelAndView;
+
     }
 
     @PostMapping("todos={id}")
     public ModelAndView searchPost(@PathVariable("id") Long id,Cliente cliente, Model model, RedirectAttributes redirAttrs){
-
         ModelAndView modelAndView = new ModelAndView();
 
-        // CPF VAZIO RG PREENCHIDO
-        if(cliente.getCpf().equals("") || cliente.getCpf() == null && !cliente.getRg().equals("")){
-            cliente.setRg(cliente.getRg().replaceAll("-","").replaceAll("\\.",""));
-            modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByRg(cliente.getRg()).get().getId());
+        cliente.setRg(cliente.getRg().replaceAll("\\.", "").replaceAll("-", ""));
+        cliente.setCpf(cliente.getCpf().replaceAll("\\.", "").replaceAll("-", ""));
+
+        // SE OS DOIS CAMPOS CONSTAM ALGO E O CLIENTE RETORNADO FOR IGUAL
+        if (clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()
+                && clienteService.byRg(cliente.getRg()).get() == clienteService.byCpf(cliente.getCpf()).get()){
+            modelAndView.setViewName("redirect:/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
         }
-        // RG VAZIO CPF PREENCHIDO
-        else if(cliente.getRg().equals("") || cliente.getRg() == null && !cliente.getCpf().equals("")){
-            cliente.setCpf(cliente.getCpf().replaceAll("-","").replaceAll("\\.",""));
-            modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByCpf(cliente.getCpf()).get().getId());
-        }
-        // AMBOS VAZIOS
-        else if(cliente.getCpf().equals("") || cliente.getCpf() == null && cliente.getRg().equals("") || cliente.getRg() == null){
-            redirAttrs = null;
-            modelAndView.setViewName("redirect:/todos");
-        }
-        // AMBOS PREENCHIDOS
         else{
-            cliente.setRg(cliente.getRg().replaceAll("-","").replaceAll("\\.",""));
-            cliente.setCpf(cliente.getCpf().replaceAll("-","").replaceAll("\\.",""));
-            // SE O RG ESTIVER OK
-            if(clienteService.byRg(cliente.getRg()).isPresent()){
-                cliente.setRg(cliente.getRg().replaceAll("-","").replaceAll("\\.",""));
-                modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByRg(cliente.getRg()).get().getId());
-            }
-
-            // SE O RG NÃO ESTIVER OK
-            else{
-
-                // SE O CPF ESTIVER OK
-                if(clienteService.byCpf(cliente.getCpf()).isPresent()){
-                    cliente.setCpf(cliente.getCpf().replaceAll("-","").replaceAll("\\.",""));
-                    modelAndView.setViewName("redirect:/todos="+ clienteRepository.findByCpf(cliente.getCpf()).get().getId());
-                }
-
-                // SE O CPF NÃO ESTIVER OK
-                else{
-                    redirAttrs = null;
-                    modelAndView.setViewName("redirect:/todos");
-                }
-            }
+            redirAttrs.addFlashAttribute
+                    ("StatusCadastro", "Usuário não encontrado");
+            modelAndView.setViewName("redirect:/todos");
         }
         return modelAndView;
     }

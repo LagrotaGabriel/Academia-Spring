@@ -52,7 +52,7 @@ body{
 	background-repeat: no-repeat;
 	background-size:  cover;
     background-color: #e1e3e6;
-    background-image: linear-gradient(to right, #4a5463, #9a9a9c);
+    background-image: linear-gradient(to right, #303845,#4a5463);
 }
 
 /* FIM DO RESET CSS */
