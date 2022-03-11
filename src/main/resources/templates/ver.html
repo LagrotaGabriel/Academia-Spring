@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Righteous&display=swap" rel="stylesheet">
+
+		<link rel="icon" th:href="@{../images/muscle.png}" type="image/gif" sizes="32x32">
+		<link th:href="@{../css/ver.css}" rel="stylesheet" />
+		<script type="text/javascript" th:src="@{../js/ver.js}"defer></script>
+		<title th:text=" 'Cartage | ' + ${cliente.nome} + ' ' + ${cliente.sobrenome}">...</title>
+	</head>
+
+	<body>
+
+		<div th:if="${UsuarioCadastrado}" id="warning" class="warning" onclick="disableWarning()">
+			<p class="warning_text" th:text="${UsuarioCadastrado}"></p>
+		</div>
+
+		<div class="center">
+
+				<div class="background">
+				</div>
+
+				<div class="title_div">
+					<h1 class="title_text" th:text="${cliente.nome} + ' ' + ${cliente.sobrenome}">Gabriel Lagrota</h1>
+				</div>
+
+				<div class="content">
+
+						<!-- LINHA 1 -->
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label> Cliente: </label>
+								</div>	
+
+								<div class="formulario_sub_desc">
+									<h2 th:text="${cliente.nome} + ' ' + ${cliente.sobrenome}">Gabriel Henrique Afonso Cruz Lagrota</h2>
+								</div>	
+
+							</div>	
+
+						</div>	
+
+						<!-- LINHA 2 -->
+						<div class="formulario_line formulario_line_duplo">
+
+							<div class="formulario_sub formulario_sub_duplo">
+
+								<div class="formulario_sub_label">
+									<label> RG: </label>
+								</div>	
+
+								<div class="formulario_sub_desc">
+									<h2 th:text="${cliente.rg}">11.111.111-11</h2>
+								</div>	
+
+							</div>
+
+							<div class="formulario_sub formulario_sub_duplo">							
+
+								<div class="formulario_sub_label">
+									<label> CPF: </label>
+								</div>	
+
+								<div class="formulario_sub_desc">
+									<h2 th:text="${cliente.cpf}">111.111.111-11</h2>
+								</div>	
+
+							</div>	
+
+						</div>	
+
+                        <!-- LINHA 3 -->
+						<div class="formulario_line formulario_line_duplo">
+
+							<div class="formulario_sub formulario_sub_duplo">
+
+								<div class="formulario_sub_label">
+
+									<label> Dt. Nascimento: </label>
+
+								</div>	
+
+								<div class="formulario_sub_desc">
+
+									<h2 th:text="${cliente.dataNascimento}">11/11/1111</h2>
+
+								</div>	
+
+							</div>	
+
+							<div class="formulario_sub formulario_sub_duplo">
+								
+								<div class="formulario_sub_label">
+								
+									<label> Dt. Cadastro: </label>
+								
+								</div>	
+								
+								<div class="formulario_sub_desc">
+								
+									<h2 th:text="${cliente.dataCadastro}">11/11/1111</h2>
+								
+								</div>	
+							
+							</div>	
+
+						</div>			
+
+						<!-- LINHA 4 -->
+						<div class="formulario_line formulario_line_duplo">
+
+							<div class="formulario_sub formulario_sub_duplo">
+
+								<div class="formulario_sub_label">
+
+									<label> Plano: </label>
+
+								</div>	
+
+								<div class="formulario_sub_desc">
+
+									<h2 th:text="${cliente.plano.tipoPlano.descricao}">Básico</h2>
+
+								</div>	
+
+							</div>	
+
+							<div class="formulario_sub formulario_sub_duplo">
+								
+								<div class="formulario_sub_label">
+								
+									<label> Vencimento: </label>
+								
+								</div>	
+								
+								<div class="formulario_sub_desc">
+								
+									<h2 th:text="${cliente.plano.dataAssinatura}">11/11/1111</h2>
+								
+								</div>	
+							
+							</div>	
+
+						</div>	
+
+						<!-- LINHA 5 -->
+						<div class="formulario_line formulario_line_duplo">
+
+							<div class="formulario_sub formulario_sub_duplo">
+
+								<div class="formulario_sub_label">
+
+									<label> Em dia: </label>
+
+								</div>	
+
+								<div class="formulario_sub_desc">
+
+									<h2>Sim</h2>
+
+								</div>	
+
+							</div>	
+
+						</div>																	
+					
+						<div class="button_line">
+							
+							<div class="buttons">
+								<a th:href="@{/cliente/todos}"><button type="button" class="btn" id="btn_volta">VOLTAR</button></a>
+							</div>
+
+							<div class="buttons">
+								<a th:href="@{/cliente/edit-{id}(id = ${cliente.id})}"><button type="button" class="btn" id="btn_cadastro">ALTERAR</button></a>
+							</div>
+
+						</div>
+
+				</div>	
+		</div>	
+
+	</body>
+</html>
