@@ -71,11 +71,9 @@ public class TodosController {
             redirAttrs.addFlashAttribute("teste", clientes);
             model.addAttribute("clientes", clientes);
         }
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("all");
         return modelAndView;
-
     }
 
     @PostMapping("/todos-{id}")

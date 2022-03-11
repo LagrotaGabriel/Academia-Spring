@@ -37,16 +37,20 @@
 
 						<div class="pesquisa">
 
-							<input type="text" class="pesquisaInput" placeholder="Pesquisa por CPF..." name="cliente.cpf"  oninput="estadoBotao()" id="pesquisaInputCpf"/>
-							<input type="text" class="pesquisaInput" placeholder="Pesquisa por RG..." name="cliente.rg"  oninput="estadoBotao()" id="pesquisaInputRg"/>
+							<input type="text" class="pesquisaInput" placeholder="Pesquisa por CPF..." name="cpf"  oninput="estadoBotao()" id="pesquisaInputCpf"/>
+							<input type="text" class="pesquisaInput" placeholder="Pesquisa por RG..." name="rg"  oninput="estadoBotao()" id="pesquisaInputRg"/>
 
 						</div>	
 
 						<button type="submit" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
-
 							<img th:src="@{images/spelling.png}"class ="pesquisaImg" alt="Pesquisar"/>
-
 						</button>
+
+						<a th:href="@{/cliente/novo}">
+							<button type="button" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
+								<img th:src="@{../images/plus.png}" class ="pesquisaImg" alt="Novo pagamento"/>
+							</button>
+						</a>
 
 						<a th:href="@{/pagamentos}">
 							<button type="button" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
@@ -73,7 +77,7 @@
 
 						<div th:unless="${teste}">
 
-							<tbody th:each="pagamento : ${pagamentos}">
+							<tbody th:each="pagamento : ${pagamentosAll}">
 
 								<tr class="linha">
 
@@ -108,7 +112,7 @@
 
 						<div th:if="${teste}">
 
-							<tbody th:each="pagamento : ${pagamentos}">
+							<tbody th:each="pagamento : ${pagamentosAll}">
 
 								<tr class="linha">
 
