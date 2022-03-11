@@ -5,15 +5,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" th:href="@{../images/muscle.png}" type="image/gif" sizes="32x32">
-		<link th:href="@{../css/cad.css}" rel="stylesheet" />
+		<link th:href="@{../css/editcliente.css}" rel="stylesheet" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Righteous&display=swap" rel="stylesheet">
-		<script type="text/javascript" th:src="@{../js/cad.js}"defer></script>
-		<title>Cartage | Novo cliente</title>
+		<script type="text/javascript" th:src="@{../js/editcliente.js}"defer></script>
+		<title th:text="'Cartage | ' + ${cliente.nome} + ' ' + ${cliente.sobrenome}">Cartage | Alterar</title>
 	</head>
 	<body>
 
@@ -27,7 +27,7 @@
 				</div>
 
 				<div class="title_div">
-					<h1 class="title_text">Cadastrar novo cliente</h1>
+					<h1 class="title_text" th:text="${cliente.nome} + ' ' + ${cliente.sobrenome}">...</h1>
 				</div>
 
 				<div class="content">
@@ -43,7 +43,7 @@
 								</div>
 
 								<div class="formulario_sub_input">
-									<input type="text" name="nome" placeholder="Ex: Gabriel" maxlength="30" />
+									<input type="text" name="nome" maxlength="30" placeholder="Ex: Gabriel" th:value="${cliente.nome}"/>
 								</div>
 
 							</div>
@@ -53,11 +53,11 @@
 									<label>Sobrenome</label>
 								</div>
 								<div class="formulario_sub_input">
-									<input type="text" name="sobrenome" placeholder="Ex: Lagrota" maxlength="30" />
+									<input type="text" name="sobrenome" placeholder="Ex: Lagrota" maxlength="30" th:value="${cliente.sobrenome}"/>
 								</div>
 							</div>
 
-						</div>-->
+						</div>
 
 						<div class="formulario_line">
 
@@ -68,7 +68,7 @@
 								</div>
 
 								<div class="formulario_sub_input">
-									<input type="text" name="rg" placeholder="Ex: 11.111.111-1" maxlength="12" />
+									<input type="text" name="rg" placeholder="Ex: 11.111.111-1" maxlength="12" th:value="${cliente.rg}"/>
 								</div>
 
 							</div>
@@ -78,7 +78,7 @@
 									<label>CPF</label>
 								</div>
 								<div class="formulario_sub_input">
-									<input type="text" name="cpf" placeholder="Ex: 111.111.111-11" maxlength="14" />
+									<input type="text" name="cpf" placeholder="Ex: 111.111.111-11" maxlength="14" th:value="${cliente.cpf}"/>
 								</div>
 							</div>
 
@@ -91,7 +91,7 @@
 									<label>Data de Nascimento</label>
 								</div>
 								<div class="formulario_sub_input">
-									<input type="text" name="dataNascimento" placeholder="Ex: 21/07/1998" maxlength="10" />
+									<input type="text" name="dataNascimento" placeholder="Ex: 21/07/1998" maxlength="10" th:value="${cliente.dataNascimento}"/>
 								</div>
 							</div>
 
@@ -102,7 +102,8 @@
 
 								<div class="formulario_sub_input">
 
-									<select name="plano.tipoPlano" class="planos">
+									<select name="plano.tipoPlano" class="planos" th:value="${cliente.plano.tipoPlano}">
+										<option value="" selected>Selecione um plano</option>
 		  								<option value="BASICO">Básico (R$ 70,00)</option>
 		  								<option value="INTERMEDIARIO">Intermediário (R$ 100,00)</option>
 		  								<option value="AVANCADO">Avançado (R$ 140,00)</option>
@@ -118,7 +119,7 @@
 								<button type="submit" class="btn" id="btn_cadastro">CADASTRAR</button>
 							</div>
 							<div class="buttons">
-								<a th:href="@{/cliente}"><button type="button" class="btn" id="btn_volta">VOLTAR</button></a>
+								<a th:href="@{/cliente/todos}"><button type="button" class="btn" id="btn_volta">VOLTAR</button></a>
 							</div>
 						</div>
 

@@ -28,3 +28,12 @@ Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plat
 - Container de warning aparece para notificar se houve ou não sucesso com o cadastro do cliente
 
 ![](CadastroCliente.png)
+
+# Tela Listagem Clientes
+
+- Lista todos os usuários cadastrados no sistema
+- Possibilidade de buscar usuário por RG e CPF
+- Possibilidade de visualizar os pagamentos do cliente, editar o cliente, visualizar as informações do cliente e excluir o cliente
+- Tela aumenta de acordo com a quantidade de clientes cadastrados
+
+![](ListagemClientes.png)

@@ -55,12 +55,16 @@ public class ClienteService {
                 finded.setCpf(cliente.getCpf());
                 finded.setDataNascimento(cliente.getDataNascimento());
                 finded.setDataCadastro(cliente.getDataCadastro());
+
                 if (cliente.getPlano() != null) {
+
                     if (finded.getPlano() != null) {
+
                         finded.getPlano().setCliente(cliente.getPlano().getCliente());
                         finded.getPlano().setTipoPlano(cliente.getPlano().getTipoPlano());
                         finded.getPlano().setDataAssinatura(cliente.getPlano().getDataAssinatura());
-                    } else {
+                    }
+                    else {
                         finded.setPlano(cliente.getPlano());
                     }
                 }
@@ -68,10 +72,12 @@ public class ClienteService {
                 return create(finded);
             }
             else{
+                System.err.println("Entrou no null");
                 return null;
             }
         }
         catch(Exception e){
+            System.err.println("Entrou no Catch");
             return null;
         }
     }
