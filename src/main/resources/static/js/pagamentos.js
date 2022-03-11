@@ -1,6 +1,6 @@
 // ALTURA PADRÃO PARA O /todos
-var alturaA = 410;
-var alturaB = 290;
+var alturaA = 340;
+var alturaB = 220;
 
 // CAPTURANDO ITENS DO HTML
 var center = document.getElementById('center');
@@ -14,7 +14,7 @@ content.style.height = alturaB + "px";
 
 // CAPTURANDO QUANTIDADE DE LINHAS DA TABELA
 var table = document.getElementById('tabela');
-var totalRowCount = table.rows.length - 1;
+var totalRowCount = table.rows.length;
 
 // SETANDO ALTURAS DE ACORDO COM QUANTIDADE DE LINHAS NA TABELA
 if(totalRowCount != 1){

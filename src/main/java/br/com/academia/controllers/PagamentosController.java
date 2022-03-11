@@ -38,7 +38,7 @@ public class PagamentosController {
             (Pagamento pagamento, Model model, ModelAndView modelAndView, RedirectAttributes redirAttrs){
 
 
-        modelAndView.setViewName("pagamentos");
+        modelAndView.setViewName("redirect:pagamentos");
         return modelAndView;
     }
 

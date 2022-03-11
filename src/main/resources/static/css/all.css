@@ -109,7 +109,7 @@ body{
     position: absolute;
     width: 1280px;
     height: 380px;
-    background-image: url('../images/gym1.png');
+    background-image: url('../images/bck2.png');
     background-repeat: cover;
     background-size: 100% 100%;
     background-position: center;
@@ -159,7 +159,7 @@ body{
 }
 
 .pesquisa{
-    width: 90%;
+    width: 85%;
     height: 100%;
     float: left;
     margin: 0 auto;
@@ -236,12 +236,24 @@ body{
 
 }
 
+.coluna_body_botao{
+    width: 100%;
+    border: none;
+    background: transparent;
+    background-color: transparent;
+}
+
 .coluna_body_imagem{
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .coluna_body_imagem:hover{
-    animation: up 3s normal;
+    animation: up 1s infinite;
+}
+
+.coluna_body_botao:hover{
+    cursor: pointer;
+    animation: up 1s infinite;
 }
 
 
@@ -334,36 +346,16 @@ tr, td, th{
     0%{
         transform: scale(1.00);
     }
-    10%{
-        transform: scale(1.01);
-    }
-    20%{
-        transform: scale(1.02);
-    }
-    30%{
-        transform: scale(1.03);
-    }
-    40%{
-        transform: scale(1.04);
-    }
-    50%{
+    25%{
         transform: scale(1.05);
     }
-    60%{
-        transform: scale(1.06);
-    }
-    70%{
-        transform: scale(1.07);
-    }
-    80%{
-        transform: scale(1.08);
-    }
-    90%{
-        transform: scale(1.09);
-    }
-    100%{
+    50%{
         transform: scale(1.10);
     }
-
-
+    75%{
+        transform: scale(1.05);
+    }
+    100%{
+        transform: scale(1.00);
+    }
 }

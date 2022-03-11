@@ -48,6 +48,12 @@
 
 						</button>
 
+						<a th:href="@{/cliente/novo}">
+							<button type="button" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
+								<img th:src="@{../images/plus.png}" class ="pesquisaImg" alt="Novo cliente"/>
+							</button>
+						</a>
+
 						<a th:href="@{/cliente/todos}">
 							<button type="button" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
 								<img th:src="@{../images/all.png}" class ="pesquisaImg" alt="Listar todos"/>
@@ -101,13 +107,15 @@
 
 									<td class="coluna_body" id="coluna_body_btn">
 										<a th:href="@{todos/view-{id}(id = ${cliente.id})}" class="coluna_body_clicavel">
-											<image th:src="@{../images/spelling.png}" class="coluna_body_imagem"/>
+											<image th:src="@{../images/eye.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>				
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<form method="DELETE" th:action="@{cliente/delete-{id}(id = ${cliente.id})}" class="coluna_body_clicavel">
-											<button type="submit" class="coluna_body_imagem"></button>;
+										<form method="POST" th:action="@{delete-{id}(id = ${cliente.id})}" class="coluna_body_clicavel">
+											<button type="submit" class="coluna_body_botao">
+												<image th:src="@{../images/delete.png}" class="coluna_body_imagem"/>
+											</button>
 										</form>	
 									</td>
 									<!--
@@ -149,7 +157,7 @@
 
 									<td class="coluna_body" id="coluna_body_btn">
 										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{../images/spelling.png}" class="coluna_body_imagem"/>
+											<image th:src="@{../images/eye.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>				
 

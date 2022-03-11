@@ -99,13 +99,18 @@ public class TodosController {
         return modelAndView;
     }
 
-    @DeleteMapping("/delete-{id}?")
-    public ModelAndView delete(@PathVariable("id") Long id, ModelAndView modelAndView){
-        System.err.println("DELETADO");
-        modelAndView.setViewName("all");
+    @PostMapping("/delete-{id}")
+    public ModelAndView delete(@PathVariable("id") Long id, ModelAndView modelAndView, RedirectAttributes redirAttrs){
+
+        redirAttrs.addFlashAttribute
+                ("StatusCadastro", "Cliente " +
+                        clienteService.byId(id).getNome() +
+                        " " +
+                        clienteService.byId(id).getSobrenome() + " deletado com sucesso");
+        clienteService.delete(id);
+        modelAndView.setViewName("redirect:todos");
         return modelAndView;
     }
-
 
     @GetMapping("/todos/view={id}")
     public ModelAndView testando(@PathVariable("id") Long id ,ModelAndView modelAndView){
