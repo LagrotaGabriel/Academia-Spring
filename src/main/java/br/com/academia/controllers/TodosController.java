@@ -6,10 +6,7 @@ import br.com.academia.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,6 +27,7 @@ public class TodosController {
     @GetMapping("/todos")
     public ModelAndView todos(Model model){
 
+        System.err.println("Acessei o todos");
         ModelAndView modelAndView = new ModelAndView();
         List<Cliente> clientes = clienteService.readAll();
         model.addAttribute("clientes", clientes);
@@ -37,9 +35,10 @@ public class TodosController {
         return modelAndView;
     }
 
-    @PostMapping("cliente/todos")
+    @PostMapping("/todos")
     public ModelAndView todosPost(Cliente cliente, Model model, RedirectAttributes redirAttrs){
 
+        System.err.println("Acessei o todosPost");
         ModelAndView modelAndView = new ModelAndView();
 
         cliente.setRg(cliente.getRg().replaceAll("\\.", "").replaceAll("-", ""));
@@ -48,21 +47,21 @@ public class TodosController {
         // SE OS DOIS CAMPOS CONSTAM ALGO E O CLIENTE RETORNADO FOR IGUAL
         if (clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()
         && clienteService.byRg(cliente.getRg()).get() == clienteService.byCpf(cliente.getCpf()).get()){
-            System.err.println("Acessei");
-            modelAndView.setViewName("redirect:cliente/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
+            modelAndView.setViewName("redirect:todos-" + clienteRepository.findByRg(cliente.getRg()).get().getId());
         }
         else{
             redirAttrs.addFlashAttribute
                     ("StatusCadastro", "Usuário não encontrado");
-            modelAndView.setViewName("redirect:cliente/todos");
+            modelAndView.setViewName("redirect:todos");
         }
         return modelAndView;
 
     }
 
-    @GetMapping("cliente/todos={id}")
+    @GetMapping("/todos-{id}")
     public ModelAndView search(@PathVariable("id") Long id, Model model, RedirectAttributes redirAttrs){
 
+        System.err.println("Acessei o search");
         if(clienteRepository.findById(id).isPresent()){
             Cliente buscado = clienteRepository.findById(id).get();
             System.err.println(buscado);
@@ -79,30 +78,36 @@ public class TodosController {
 
     }
 
-    @PostMapping("cliente/todos={id}")
+    @PostMapping("/todos-{id}")
     public ModelAndView searchPost(@PathVariable("id") Long id,Cliente cliente, Model model, RedirectAttributes redirAttrs){
         ModelAndView modelAndView = new ModelAndView();
 
+        System.err.println("Acessei o searchPost");
         cliente.setRg(cliente.getRg().replaceAll("\\.", "").replaceAll("-", ""));
         cliente.setCpf(cliente.getCpf().replaceAll("\\.", "").replaceAll("-", ""));
 
         // SE OS DOIS CAMPOS CONSTAM ALGO E O CLIENTE RETORNADO FOR IGUAL
         if (clienteService.byRg(cliente.getRg()).isPresent() && clienteService.byCpf(cliente.getCpf()).isPresent()
                 && clienteService.byRg(cliente.getRg()).get() == clienteService.byCpf(cliente.getCpf()).get()){
-            modelAndView.setViewName("redirect:cliente/todos=" + clienteRepository.findByRg(cliente.getRg()).get().getId());
+            modelAndView.setViewName("redirect:todos-" + clienteRepository.findByRg(cliente.getRg()).get().getId());
         }
         else{
             redirAttrs.addFlashAttribute
                     ("StatusCadastro", "Usuário não encontrado");
-            modelAndView.setViewName("redirect:cliente/todos");
+            modelAndView.setViewName("redirect:todos");
         }
         return modelAndView;
     }
 
+    @DeleteMapping("/delete-{id}?")
+    public ModelAndView delete(@PathVariable("id") Long id, ModelAndView modelAndView){
+        System.err.println("DELETADO");
+        modelAndView.setViewName("all");
+        return modelAndView;
+    }
 
 
-
-    @GetMapping("cliente/todos/view={id}")
+    @GetMapping("/todos/view={id}")
     public ModelAndView testando(@PathVariable("id") Long id ,ModelAndView modelAndView){
 
         System.err.println("ID: " + id);

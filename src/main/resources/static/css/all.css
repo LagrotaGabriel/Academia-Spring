@@ -46,6 +46,7 @@ table {
 
 html{
 	font-family: 'Roboto Condensed', sans-serif;
+    background-image: linear-gradient(to right, #303845,#4a5463);
 }
 
 body{
@@ -91,11 +92,11 @@ body{
 .center{
 
     width: 1280px;
+    height: 380px;
     margin: 20px auto;
     justify-content: center;
     text-align:  center;
     display: block; 
-    height: 780px;
     background-color: #4a5463;
     background-image: linear-gradient(to right, #303845,#4a5463);
     border-radius: 25px;
@@ -107,11 +108,12 @@ body{
 .background{
     position: absolute;
     width: 1280px;
-    height: 780px;
+    height: 380px;
     background-image: url('../images/gym1.png');
-    background-repeat: no-repeat;
+    background-repeat: cover;
     background-size: 100% 100%;
     background-position: center;
+    background-size: inherit;
     opacity: 0.3;
     border-radius: 25px;
     box-shadow: 0 0 20px #121212;
@@ -139,7 +141,7 @@ body{
 .content{
     position: absolute;
     margin: 0 auto;
-    height: 780px;
+    height: 260px;
     border-radius: 0 0 25px 25px;
     width: 1280px;
     margin-top: 25px;

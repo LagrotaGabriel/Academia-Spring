@@ -8,9 +8,9 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-		<link rel="icon" th:href="@{images/muscle.png}" type="image/gif" sizes="32x32">
+		<link rel="icon" th:href="@{../images/muscle.png}" type="image/gif" sizes="32x32">
 		<link th:href="@{../css/all.css}" rel="stylesheet" />
-		<script type="text/javascript" th:src="@{../js/all.js}"defer></script>
+
 
 		<title>Cartage | Clientes</title>
 
@@ -22,16 +22,16 @@
 			<p class="warning_text" th:text="${StatusCadastro}"></p>
 		</div>
 
-		<div class="center">
+		<div class="center" id="center">
 
-				<div class="background">
+				<div class="background" id="background">
 				</div>
 
 				<div class="title_div">
 					<h1 class="title_text">Clientes cadastrados</h1>
 				</div>
 
-				<div class="content">
+				<div class="content" id = "content">
 
 					<form class="searchBar" th:action="${todos}" th:object="${cliente}" method="POST">
 
@@ -48,7 +48,7 @@
 
 						</button>
 
-						<a th:href="@{/todos}">
+						<a th:href="@{/cliente/todos}">
 							<button type="button" class="pesquisaBtn" disabled="true", id="pesquisaBtn">
 								<img th:src="@{../images/all.png}" class ="pesquisaImg" alt="Listar todos"/>
 							</button>
@@ -56,7 +56,7 @@
 
 					</form>	
 
-					<table class="tabela">
+					<table class="tabela" id="tabela">
 						<thead>
 							<tr class="linha">
 								<th class="coluna_head">Nome</th>
@@ -88,28 +88,34 @@
 									<td th:text="${cliente.plano.tipoPlano.descricao}" class="coluna_body" >...</td>
 									
 									<td class="coluna_body" id="coluna_body_btn">
-										<a th:href="@{todos/view={id}(id = ${cliente.id})}">
+										<a href="#" class="coluna_body_clicavel" th:href="@{todos/pagamentos-{id}(id = ${cliente.id})}">
 											<image th:src="@{../images/payment.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
+										<a href="#" class="coluna_body_clicavel" th:href="@{todos/edit-{id}(id = ${cliente.id})}">
 											<image th:src="@{../images/exchange.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>								
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
+										<a th:href="@{todos/view-{id}(id = ${cliente.id})}" class="coluna_body_clicavel">
 											<image th:src="@{../images/spelling.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>				
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
+										<form method="DELETE" th:action="@{cliente/delete-{id}(id = ${cliente.id})}" class="coluna_body_clicavel">
+											<button type="submit" class="coluna_body_imagem"></button>;
+										</form>	
+									</td>
+									<!--
+									<td class="coluna_body" id="coluna_body_btn">
+										<a th:href="@{todos/delete-{id}(id = ${cliente.id})}" class="coluna_body_clicavel">
 											<image th:src="@{../images/delete.png}" class="coluna_body_imagem"/>
 										</a>
-									</td>												
+									</td>-->												
 
 								</tr>
 							</tbody>
@@ -172,5 +178,6 @@
 				</div>	
 		</div>	
 
+		<script type="text/javascript" th:src="@{../js/all.js}"defer></script>
 	</body>
 </html>

@@ -1,4 +1,29 @@
+// ALTURA PADRÃO PARA O /todos
+var alturaA = 380;
+var alturaB = 260;
 
+// CAPTURANDO ITENS DO HTML
+var center = document.getElementById('center');
+var background = document.getElementById('background');
+var content = document.getElementById('content');
+
+// SETANDO ALTURA DA TABELA PARA 1 LINHA
+center.style.height = alturaA + "px";
+background.style.height = alturaA + "px";
+content.style.height = alturaB + "px";
+
+// CAPTURANDO QUANTIDADE DE LINHAS DA TABELA
+var table = document.getElementById('tabela');
+var totalRowCount = table.rows.length - 1;
+
+// SETANDO ALTURAS DE ACORDO COM QUANTIDADE DE LINHAS NA TABELA
+if(totalRowCount != 1){
+	console.log("Acessei")
+	console.log(alturaA + (42 * totalRowCount) + "px");
+	center.style.height = alturaA + (42 * totalRowCount) + "px";
+	background.style.height = alturaA + (42 * totalRowCount) + "px";
+	content.style.height = alturaB + (42 * totalRowCount) + "px";
+}
 
 function estadoBotao(){
 
@@ -21,3 +46,4 @@ function disableWarning(){
 		document.getElementById('warning').style.display="none";
 	}
 }
+
