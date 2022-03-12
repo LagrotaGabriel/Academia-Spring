@@ -94,7 +94,7 @@
 									<td th:text="${cliente.plano.tipoPlano.descricao}" class="coluna_body" >...</td>
 									
 									<td class="coluna_body" id="coluna_body_btn">
-										<a class="coluna_body_clicavel" th:href="@{../pagamentos-{id}(id = ${cliente.id})}">
+										<a class="coluna_body_clicavel" th:href="@{/pagamentos/novo-{id}(id = ${cliente.id})}">
 											<image th:src="@{../images/payment.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>

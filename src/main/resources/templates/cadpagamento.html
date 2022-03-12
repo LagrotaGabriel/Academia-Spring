@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" th:href="@{../images/muscle.png}" type="image/gif" sizes="32x32">
+		<link th:href="@{../css/cadpagamento.css}" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Righteous&display=swap" rel="stylesheet">
+		<script type="text/javascript" th:src="@{../js/cadpagamento.js}" defer></script>
+		<title>Cartage | Pagamento</title>
+	</head>
+	<body>
+
+		<div th:if="${UsuarioCadastrado}" id="warning" class="warning" onclick="disableWarning()">
+			<p class="warning_text" th:text="${UsuarioCadastrado}"></p>
+		</div>
+
+		<div class="center">
+
+				<div class="background">
+				</div>
+
+				<div class="title_div">
+					<h1 class="title_text">Realizar pagamento</h1>
+				</div>
+
+				<div class="content">
+
+					<form th:action="@{../novo-{id}(id = ${clientePgto.id})}" th:object="${pagamento}" method="POST" class="formulario">
+
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Valor</label>
+								</div>
+
+								<div class="formulario_sub_input">
+									<input name="valor" type="text" placeholder="Ex: 100,00" maxlength="30" th:value="${clientePgto.plano.tipoPlano.preco}" disabled="true" id="valorPagamento"/>
+								</div>
+
+							</div>
+
+
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Forma de pagamento</label>
+								</div>
+
+									<select name="formaPagamento" class="planos" onchange="alteraCampos()" id="meioPagamento">
+										<option value=""></option>
+		  								<option value="ESPECIE">Dinheiro (Desc. 2%)</option>
+		  								<option value="DEBITO">Débito (Desc. 2%)</option>
+		  								<option value="CREDITO">Crédito</option>
+		  								<option value="PIX">Pix (Desc. 2%)</option>
+									</select>
+
+							</div>														
+
+						</div>
+
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Desconto</label>
+								</div>
+
+								<div class="formulario_sub_input">
+									<input type="text" name="desconto" disabled="true" id="descontoPagamento"/>
+								</div>
+
+							</div>
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Modalidade</label>
+								</div>
+
+									<select name="modalidade" class="planos" onchange="alteraCampos()" id="periodoPagamento">
+										<option value=""></option>
+		  								<option value="MENSAL">Mensal</option>
+		  								<option value="TRIMESTRAL">Trimestral (Desc. 4%)</option>
+		  								<option value="SEMESTRAL">Semestral (Desc. 8%)</option>
+		  								<option value="ANUAL">Anual (Desc. 12%)</option>
+									</select>
+
+							</div>	
+
+						</div>
+
+						<div class="formulario_line">
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Assinatura</label>
+								</div>
+
+								<div class="formulario_sub_input">
+									<input type="text" placeholder="Ex: 11/11/1111" maxlength="12" disabled="true" th:value="${clientePgto.plano.dataAssinatura}"/>
+								</div>
+
+							</div>
+
+							<div class="formulario_sub">
+
+								<div class="formulario_sub_label">
+									<label>Plano</label>
+								</div>
+
+								<div class="formulario_sub_input">
+									<input type="text" placeholder="Ex: Intermediário" maxlength="12" th:value="${clientePgto.plano.tipoPlano.descricao}" disabled="true" id="tipoPlano"/>
+								</div>
+
+							</div>	
+
+						</div>
+
+						<div class="button_line">
+							<div class="buttons">
+								<button type="submit" class="btn" id="btn_salvar" disabled=true>SALVAR</button>
+							</div>
+							<div class="buttons">
+								<a th:href="@{/cliente/todos}"><button type="button" class="btn" id="btn_volta">VOLTAR</button></a>
+							</div>
+						</div>
+
+					</form>
+
+				</div>	
+		</div>	
+
+	</body>
+</html>

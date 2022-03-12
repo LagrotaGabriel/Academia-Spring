@@ -46,7 +46,7 @@ public class ClienteService {
 
     public Cliente update(Long id, Cliente cliente){
 
-        try{
+        //try{
             if(clienteValidation.validaCliente(cliente)) {
                 Cliente finded = byId(id);
                 finded.setNome(cliente.getNome());
@@ -75,11 +75,11 @@ public class ClienteService {
                 System.err.println("Entrou no null");
                 return null;
             }
-        }
-        catch(Exception e){
-            System.err.println("Entrou no Catch");
-            return null;
-        }
+        //}
+        //catch(Exception e){
+        //    System.err.println("Entrou no Catch");
+        //    return null;
+        //}
     }
 
     public Boolean delete(Long id){

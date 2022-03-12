@@ -33,11 +33,11 @@ public class Pagamento {
     private String vencimento;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "mod_pagamento", updatable = true, nullable = false, unique = false)
+    @Column(name = "mod_pagamento", updatable = true, unique = false)
     private Modalidade modalidade;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "forma_pagamento", updatable = true, nullable = false, unique = false)
+    @Column(name = "forma_pagamento", updatable = true, unique = false)
     private FormaPagamento formaPagamento;
 
     @ManyToOne
