@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" th:href="@{../images/muscle.png}" type="image/gif" sizes="32x32">
 		<link th:href="@{../css/cadpagamento.css}" rel="stylesheet" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,8 +42,10 @@
 								</div>
 
 								<div class="formulario_sub_input">
-									<input name="valor" type="text" placeholder="Ex: 100,00" maxlength="30" th:value="${clientePgto.plano.tipoPlano.preco}" disabled="true" id="valorPagamento"/>
-								</div>
+
+									<input name="valor" type="text" th:value="${clientePgto.plano.tipoPlano.preco}" id="valorPagamento" readonly>
+
+								</div>	
 
 							</div>
 
@@ -77,8 +78,10 @@
 								</div>
 
 								<div class="formulario_sub_input">
-									<input type="text" name="desconto" disabled="true" id="descontoPagamento"/>
-								</div>
+
+									<input name="desconto" type="text" value="0.00" id="descontoPagamento" readonly>
+
+								</div>	
 
 							</div>
 

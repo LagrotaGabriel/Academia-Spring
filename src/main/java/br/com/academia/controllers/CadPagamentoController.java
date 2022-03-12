@@ -60,7 +60,7 @@ public class CadPagamentoController {
         System.err.println(clienteService.byId(id).getPagamentos());
 
         redirAttrs.addFlashAttribute("UsuarioCadastrado", "Pagamento cadastrado com sucesso!");
-        modelAndView.setViewName("redirect:cliente/todos");
+        modelAndView.setViewName("redirect:pagamentos");
         return modelAndView;
     }
 

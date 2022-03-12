@@ -31,7 +31,7 @@
 					<h1 class="title_text">Histórico de pagamentos</h1>
 				</div>
 
-				<div class="content">
+				<div class="content" id="content">
 
 					<form class="searchBar" th:action="${pagamentos}" th:object="${pagamento}" method="POST">
 
@@ -54,15 +54,16 @@
 
 					</form>	
 
-					<table class="tabela">
+					<table class="tabela" id="tabela">
 						<thead>
 							<tr class="linha">
-								<th class="coluna_head">Valor</th>
+								<th class="coluna_head">Bruto</th>
 								<th class="coluna_head">Desconto</th>
-								<th class="coluna_head">Vencimento</th>
+								<th class="coluna_head">Líquido</th>
+								<th class="coluna_head">Data</th>
 								<th class="coluna_head">Modalidade</th>
 								<th class="coluna_head">Forma pgto.</th>
-								<th class="coluna_head">Id Cliente</th>
+								<th class="coluna_head">Cliente</th>
 								<th class="coluna_head" id="coluna_head_btn">Editar</th>
 								<th class="coluna_head" id="coluna_head_btn">Ver</th>
 								<th class="coluna_head" id="coluna_head_btn">Excluir</th>
@@ -75,12 +76,13 @@
 
 								<tr class="linha">
 
-									<td th:text="${pagamento.valor}" class="coluna_body">...</td>
-						         	<td th:text="${pagamento.desconto}" class="coluna_body">...</td>
+									<td th:text="'R$ ' + ${pagamento.valor + pagamento.desconto}" class="coluna_body">...</td>
+									<td th:text="'R$ ' + ${pagamento.desconto}" class="coluna_body">...</td>
+						         	<td th:text="'R$ ' + ${pagamento.valor}" class="coluna_body">...</td>
 									<td th:text="${pagamento.vencimento}" class="coluna_body">...</td>
-						         	<td th:text="${pagamento.modalidade}" class="coluna_body">...</td>
-									<td th:text="${pagamento.formaPagamento}" class="coluna_body">...</td>
-						         	<td th:text="${pagamento.cliente.id}" class="coluna_body">...</td>
+						         	<td th:text="${pagamento.modalidade.descricao}" class="coluna_body">...</td>
+									<td th:text="${pagamento.formaPagamento.descricao}" class="coluna_body">...</td>
+						         	<td th:text="${pagamento.cliente.nome} + ' ' + ${pagamento.cliente.sobrenome}" class="coluna_body">...</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
 										<a href="#" class="coluna_body_clicavel">
@@ -110,12 +112,13 @@
 
 								<tr class="linha">
 
-									<td th:text="${buscado.valor}" class="coluna_body">...</td>
-						         	<td th:text="${buscado.desconto}" class="coluna_body">...</td>
+									<td th:text="'R$ ' + ${buscado.valor + buscado.desconto}" class="coluna_body">...</td>
+									<td th:text="'R$ ' + ${buscado.desconto}" class="coluna_body">...</td>
+						         	<td th:text="'R$ ' + ${buscado.valor}" class="coluna_body">...</td>
 									<td th:text="${buscado.vencimento}" class="coluna_body">...</td>
-						         	<td th:text="${buscado.modalidade}" class="coluna_body">...</td>
-									<td th:text="${buscado.formaPagamento}" class="coluna_body">...</td>
-						         	<td th:text="${buscado.cliente.id}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.modalidade.descricao}" class="coluna_body">...</td>
+									<td th:text="${buscado.formaPagamento.descricao}" class="coluna_body">...</td>
+						         	<td th:text="${buscado.cliente.nome} + ' ' + ${buscado.cliente.sobrenome}" class="coluna_body">...</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
 										<a href="#" class="coluna_body_clicavel">

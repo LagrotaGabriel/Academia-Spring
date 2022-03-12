@@ -234,8 +234,15 @@ body{
 
 }
 
+.coluna_body_botao{
+    width: 100%;
+    border: none;
+    background: transparent;
+    background-color: transparent;
+}
+
 .coluna_body_imagem{
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .coluna_body_imagem:hover{
