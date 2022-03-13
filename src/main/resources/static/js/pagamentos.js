@@ -1,11 +1,13 @@
 // ALTURA PADRÃO PARA O /todos
-var alturaA = 410;
-var alturaB = 290;
+var alturaA = 340;
+var alturaB = 220;
+var alturaC = 400;
 
 // CAPTURANDO ITENS DO HTML
 var center = document.getElementById('center');
 var background = document.getElementById('background');
 var content = document.getElementById('content');
+var body = document.getElementById('body');
 
 // SETANDO ALTURA DA TABELA PARA 1 LINHA
 center.style.height = alturaA + "px";
@@ -19,10 +21,12 @@ var totalRowCount = table.rows.length;
 // SETANDO ALTURAS DE ACORDO COM QUANTIDADE DE LINHAS NA TABELA
 if(totalRowCount != 1){
 	console.log("Acessei")
-	console.log(alturaA + (65 * totalRowCount) + "px");
-	center.style.height = alturaA + (65 * totalRowCount) + "px";
-	background.style.height = alturaA + (65 * totalRowCount) + "px";
-	content.style.height = alturaB + (65 * totalRowCount) + "px";
+	console.log(alturaA + (82 * totalRowCount) + "px");
+	center.style.height = alturaA + (82 * totalRowCount) + "px";
+	background.style.height = alturaA + (82 * totalRowCount) + "px";
+	content.style.height = alturaB + (82 * totalRowCount) + "px";
+	alturaC += (82*(totalRowCount));
+	body.style.height = alturaC + "px";
 }
 
 function estadoBotao(){

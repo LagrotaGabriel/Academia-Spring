@@ -58,6 +58,7 @@ public class PagamentoService {
 
         try {
             if (byId(id) != null) {
+                pagamentoRepository.deleteById(id);
                 pagamentoRepository.delete(byId(id));
                 return true;
             } else {

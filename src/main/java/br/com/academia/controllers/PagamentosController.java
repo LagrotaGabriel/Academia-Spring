@@ -107,4 +107,21 @@ public class PagamentosController {
         return modelAndView;
     }
 
+    @PostMapping("/del-{id}")
+    public ModelAndView delete(@PathVariable("id") Long id, ModelAndView modelAndView, RedirectAttributes redirAttrs){
+
+        Pagamento pagamento = pagamentoService.byId(id);
+        Cliente cliente = clienteService.byId(pagamento.getCliente().getId());
+
+        pagamentoService.delete(id);
+        System.err.println("Antiga lista de pagamentos: " + cliente.getPagamentos().indexOf(pagamento));
+        cliente.getPagamentos().remove(pagamento);
+        System.err.println("Nova lista de pagamentos: " + cliente.getPagamentos().indexOf(pagamento));
+        clienteService.update(cliente.getId(), cliente);
+        redirAttrs.addFlashAttribute
+                ("StatusCadastro", "Pagamento deletado com sucesso");
+        pagamentoService.delete(id);
+        modelAndView.setViewName("redirect:pagamentos");
+        return modelAndView;
+    }
 }

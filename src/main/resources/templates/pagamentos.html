@@ -16,7 +16,7 @@
 
 	</head>
 
-	<body>
+	<body id="body">
 
 		<div th:if="${StatusCadastro}" id="warning" class="warning" onclick="disableWarning()">
 			<p class="warning_text" th:text="${StatusCadastro}"></p>
@@ -85,22 +85,24 @@
 						         	<td th:text="${pagamento.cliente.nome} + ' ' + ${pagamento.cliente.sobrenome}" class="coluna_body">...</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
+										<a th:href="@{/pagamentos/edit-{id}(id = ${pagamento.id})}" class="coluna_body_clicavel">
 											<image th:src="@{images/exchange.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>								
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{images/spelling.png}" class="coluna_body_imagem"/>
+										<a th:href="@{/pagamentos/view-{id}(id = ${pagamento.id})}" class="coluna_body_clicavel">
+											<image th:src="@{images/eye.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>				
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{images/delete.png}" class="coluna_body_imagem"/>
-										</a>
-									</td>												
+										<form method="POST" th:action="@{del-{id}(id = ${pagamento.id})}" class="coluna_body_clicavel">
+											<button type="submit" class="coluna_body_botao">
+												<image th:src="@{../images/delete.png}" class="coluna_body_imagem"/>
+											</button>
+										</form>	
+									</td>											
 
 								</tr>
 							</tbody>
@@ -121,22 +123,24 @@
 						         	<td th:text="${buscado.cliente.nome} + ' ' + ${buscado.cliente.sobrenome}" class="coluna_body">...</td>
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
+										<a th:href="@{/pagamentos/edit-{id}(id = ${pagamento.id})}" class="coluna_body_clicavel">
 											<image th:src="@{images/exchange.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>								
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{images/spelling.png}" class="coluna_body_imagem"/>
+										<a th:href="@{pagamentos/view-{id}(id = ${pagamento.id})}" class="coluna_body_clicavel">
+											<image th:src="@{images/eye.png}" class="coluna_body_imagem"/>
 										</a>
 									</td>				
 
 									<td class="coluna_body" id="coluna_body_btn">
-										<a href="#" class="coluna_body_clicavel">
-											<image th:src="@{images/delete.png}" class="coluna_body_imagem"/>
-										</a>
-									</td>												
+										<form method="POST" th:action="@{del-{id}(id = ${pagamento.id})}" class="coluna_body_clicavel">
+											<button type="submit" class="coluna_body_botao">
+												<image th:src="@{../images/delete.png}" class="coluna_body_imagem"/>
+											</button>
+										</form>	
+									</td>											
 
 								</tr>
 
