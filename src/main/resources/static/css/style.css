@@ -46,6 +46,7 @@ table {
 
 html{
 	font-family: 'Roboto Condensed', sans-serif;
+    background-image: linear-gradient(to right, #303845,#4a5463);
 }
 
 body{

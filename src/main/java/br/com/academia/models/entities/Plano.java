@@ -4,7 +4,6 @@ import br.com.academia.models.enums.TipoPlano;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 /** Classe para objetos do tipo Plano, onde serão contidos valores e métodos para o mesmo
  * @author gahcruz ~ Gabriel Lagrota
