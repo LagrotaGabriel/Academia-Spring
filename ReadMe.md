@@ -1,5 +1,6 @@
 # Academia-Spring
-Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plataforma de gestão para academias.
+- Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plataforma de gestão para academias.
+- App rodando: https://academia-cartage-api.herokuapp.com/
 
 # Funcionalidades
 
