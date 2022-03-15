@@ -2,9 +2,6 @@ package br.com.academia.models.entities;
 
 import br.com.academia.models.enums.FormaPagamento;
 import br.com.academia.models.enums.Modalidade;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import javax.persistence.*;
 

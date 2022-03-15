@@ -10,7 +10,7 @@ Sistema desenvolvido em Java Spring boot que tem como objetivo oferecer uma plat
 - Seleção de planos por categorias
 
 # UML INICIAL
-![](UML-Academia.png)
+![](UML Academia.png)
 
 # Tela home page
 
